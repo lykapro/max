@@ -256,6 +256,9 @@ return;
         print "$Yellow";
         print "> pls. enter atleast one (1) username\n\n";
             mainmenu(); 
+    } else {
+        $start=0;
+        $end=count($maxaccounts)-1;
     }
 
    } else
