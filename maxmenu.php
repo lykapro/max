@@ -1,5 +1,5 @@
 <?PHP
-$Webs="https://github.com/maximum001/max\n\n";
+$Webs="https://github.com/lykapro/max\n\n";
 
 @system("clear");
 
@@ -90,7 +90,7 @@ array_push($ratersaccount,"xianmig2022");
 array_push($ratersaccount,"zero9691255118");
 array_push($ratersaccount,"ninesixnine1690606");
     
-$ScriptName ="MAXmenu build [01.15.22]\n© 2022 Rene Aparri";
+$ScriptName ="MAXmenu build [01.16.22]\n© 2022 Rene Aparri";
 
 print "$White";
 print "$ScriptName\n";
