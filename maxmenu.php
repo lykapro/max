@@ -1,5 +1,5 @@
 <?PHP
-$Webs="https://github.com/maximum001/max\n\n";
+$Webs="https://github.com/lykapro/max\n\n";
 
 @system("clear");
 
