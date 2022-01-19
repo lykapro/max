@@ -1,5 +1,6 @@
 <?PHP
-$Webs="https://github.com/lykapro/max\n\n";
+$Webs = "https://github.com/lykapro/max\n\n";
+$Script = "MAXmenu build [01.19.22]\n© 2022 Rene Aparri\n";
 
 @system("clear");
 
@@ -90,10 +91,11 @@ array_push($ratersaccount,"xianmig2022");
 array_push($ratersaccount,"zero9691255118");
 array_push($ratersaccount,"ninesixnine1690606");
     
-$ScriptName ="MAXmenu build [01.15.22]\n© 2022 Rene Aparri";
+
 
 print "$White";
-print "$ScriptName\n";
+//print "$ScriptName\n";
+print $GLOBALS['Script'];
 print $GLOBALS['Webs'];
     
 print "$White\nMAIN MENU";
@@ -1070,6 +1072,7 @@ do {
                     $timetosleep=1;
                     do {
                         $devID=uniqid('eab');
+                        $devIMEI=uniqid('zac');
                         $devicenamemodelmodel=uniqid('eea');
                     
                         print "$White"; 
@@ -1087,7 +1090,7 @@ do {
                     {
                         "device": {
                         "deviceId"         : "$devID",
-                        "deviceImei"       : "$devID",
+                        "deviceImei"       : "$devIMEI",
                         "deviceModel"      : "$devicenamemodelmodel",
                         "deviceName"       : "$devicenamemodelmodel",
                         "deviceOs"         : "Android",
@@ -1391,19 +1394,16 @@ function loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accoun
     
     if ($jsonn->message != "Invalid username/password") :
  
-    print "$White\n";
-    printf("%-5s (%2s/%-2s) | %-15s\n","User",$posted, $noofaccounts,$currentuser);
-
-    print "$Green\n";
-    
-   // var_dump($jsonn);
-   // exit;
     $msgn = $jsonn->message;
     $status = $jsonn->status;
     $vuser = $jsonn->data->user->userName;
     $userid=$jsonn->data->user->id;
     $bearer = $jsonn->data->token->accessToken;
 
+    print "$White\n";
+    printf("%-4s (%2s/%-2s) | %-15s\n","User",$posted, $noofaccounts,$vuser);
+
+    print "$Green\n";
      //     print "$White";
      //     printf("%-13s | %.2f\n","Lyka Gems",getgembalance($bearer));
      //     printf("%-13s |$Cyan %s\n\n","Status",$msgn);
@@ -1420,7 +1420,7 @@ function loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accoun
          
        print "$Green";
        
-         $poststatus = postmoments($vuser, $bearer, $userid, $posttype, $accounttype);
+         $poststatus = postmoments($userid, $bearer, $posttype, $accounttype);
        
          if ($poststatus != '')
          {
@@ -1481,12 +1481,12 @@ endif;
 } // loop2accts
 
 
-function postmoments($currentuser, $bearer, $userid ,$posttype, $accounttype) {
+function postmoments($userid, $bearer, $posttype, $accounttype) {
 
-   $deviceid=uniqid('eaf');
+   $deviceid=uniqid('fff');
     
-   $currUsrID = $userid;//getUserId($deviceid, $bearer);
-
+   $currUsrID = $userid;
+   
    $uploadLegacy = "https://media.mylykaapps.com/api/v1/media/social/multi-upload-url";
    
    $uploadPay = <<<DATA
@@ -1494,7 +1494,7 @@ function postmoments($currentuser, $bearer, $userid ,$posttype, $accounttype) {
         "clientId":"$currUsrID",
         "files":[{
             "fileName":"https://github.com/maximum001/images/blob/main/p1.jpeg", 
-            "mediaType":"image"}]        }
+            "mediaType":"image"}] }
    DATA; 
    
    $uploadLegPost = postX($uploadLegacy,$uploadPay,$bearer);
@@ -1704,7 +1704,7 @@ function postmoments($currentuser, $bearer, $userid ,$posttype, $accounttype) {
                    if ($postresponse != NULL)
                    {
                       $pmessage=$postresponse->message;
-                   } else {$pmessage="error encountered"; }
+                   } else {$pmessage="$Yellow\nerror encountered"; }
 
                 return $pmessage;
 
@@ -1777,7 +1777,7 @@ function postmoments($currentuser, $bearer, $userid ,$posttype, $accounttype) {
  
  function payload($deviceidx, $xtraPay, $rTokenx = ""){
 
-    $devicenamemodel=uniqid('abe');
+    $devicenamemodel=uniqid('ddd');
 
      $valdata = <<<DATA
              {"device": {
@@ -1820,7 +1820,7 @@ function getgembalance($bearer)
 
 function getID($acctname, $password) 
 {
-    $devID=uniqid('efe');
+    $devID=uniqid('eee');
 
     $urll = "https://identity.mylykaapps.com/useraccounts/login";
     $curll = curl_init($urll);
