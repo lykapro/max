@@ -1070,10 +1070,13 @@ do {
                     $PostNum=0;
                     $xcount=1;
                     $timetosleep=1;
+
+                    $devID=uniqid('eab');
+                    $devIMEI=uniqid('zac');
+                    $devicenamemodelmodel=uniqid('eea');
+
                     do {
-                        $devID=uniqid('eab');
-                        $devIMEI=uniqid('zac');
-                        $devicenamemodelmodel=uniqid('eea');
+
                     
                         print "$White"; 
                         printf("%-5s$Green #%2s > ",".mr.","$xcount");
@@ -1119,14 +1122,20 @@ do {
                             $timetosleep=1;
                         if (strstr($postmessage,'Congratulations')) {
                             print "rated over 10 posts \n";
+                            $devID=uniqid('ccc');
+                            $devIMEI=uniqid('zgc');
                            // var_dump($json);
                         } elseif ($postmessage=="You already have rated this post.")
                         {
                          print "post already rated\n";
+                         $devID=uniqid('xyz');
+                         $devIMEI=uniqid('yzx');
                          //var_dump($json);   
                         } elseif (strstr($postmessage,'Too many')) {
                             print "$Yellow";
 			                print "failed, retrying\n";
+                            $devID=uniqid('rrr');
+                            $devIMEI=uniqid('sss');
                             $PostNum--;
                             $xcount--;
                             $timetosleep=10;
@@ -1135,15 +1144,20 @@ do {
                         } elseif (strstr($postmessage,'Forbidden')) {
                             print "$Yellow";
                             print "forbidden, retrying\n";
+                            $devID=uniqid('veb');
+                            $devIMEI=uniqid('erl');
                             $PostNum--;
                             $xcount--;
                             $timetosleep=10;
                         } elseif (strstr($postmessage,"Post rating")) {
                            print "earnings saved\n";
+                           $devID=uniqid('qrs');
+                           $devIMEI=uniqid('339');
                            //var_dump($json);    
                         } else {
                            print "$postmessage\n";
-                                
+                           $devID=uniqid('421');
+                           $devIMEI=uniqid('rga');    
                         }
                         } else { 
                             print "LYKA server error\n";  
@@ -1392,6 +1406,8 @@ function loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accoun
     //Login to account
     $jsonn = logintoaccount($currentuser,$mainpassword);
     
+    if ($jsonn != NULL)
+    {
     if ($jsonn->message != "Invalid username/password") :
  
     $msgn = $jsonn->message;
@@ -1414,7 +1430,7 @@ function loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accoun
      do {  
         
        print "$White";
-       printf(".%-6s #%-2s  > ",$posttype,$postloop);
+       printf("adding %-6s #%-2s  > ",$posttype,$postloop);
 
 //       $deviceid = uniqid('daf');
          
@@ -1424,14 +1440,15 @@ function loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accoun
        
          if ($poststatus != '')
          {
-         if (strstr($poststatus,"Too many")) {
+
+/*            if (strstr($poststatus,"Too many")) {
              print "$Yellow";
-		 print "too many, retrying ($postretry)";
+		     print "too many, retrying ($postretry)";
              sleep(5);
              $postloop--;
              $postretry++; 
           } elseif ($poststatus == "Forbidden")
-          {
+         {
              print "$Yellow";
 		     print "forbidden, retrying ($postretry)";
              sleep(5);
@@ -1440,9 +1457,28 @@ function loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accoun
           }
           else {
            print "$poststatus";
+           $postretry=1;
          }
         }  else { print "error"; }
-         
+    */
+        if ($poststatus == "added")
+        {
+          print "success";
+          $postretry =1;
+
+        } else
+
+        {
+            print "$Yellow";
+            print "error, retrying ($postretry)";
+            sleep(5);
+            $postloop--;
+            $postretry++;
+
+        }
+    
+    } 
+
          print "\n";
         
          $postloop++;
@@ -1457,6 +1493,12 @@ else :
     break;    
 endif;
 
+}
+else {
+    print "$Green\nError\n";
+    break;
+}
+
     print "\n$White";
     print "--------------------------------\n";
     usleep(100000);
@@ -1464,6 +1506,8 @@ endif;
     } while ($posted != $end+1); 
     //end of loop for x username
     
+    if ($jsonn != NULL)
+    {
     if ($jsonn->message != "Invalid username/password")
     {
     print "$White\n";
@@ -1475,6 +1519,11 @@ endif;
     print "\n$White";
     $x=readline("press enter to continue");
     }
+} else {
+
+    print "\n$White";
+    $x=readline("error encounterd.\npress enter to continue");
+}
 
     mainmenu();
 
@@ -1498,15 +1547,26 @@ function postmoments($userid, $bearer, $posttype, $accounttype) {
    DATA; 
    
    $uploadLegPost = postX($uploadLegacy,$uploadPay,$bearer);
- 
+
+
+   if ($uploadLegPost != NULL)
+   {
+
+
+  // var_dump($uploadLegPost);
+  // exit;
+
    if($uploadLegPost->data){
        $mediaID = $uploadLegPost->data[0]->mediaId;
 
        $amznToken = "https://media.mylykaapps.com/api/v1/access/aws/media-token/$currUsrID";
        $firstGet = getX($amznToken,$deviceid,$bearer);
 
-       if($firstGet->data){
-           $amzIDid = $firstGet->data->identityId;
+
+
+       //if($firstGet->data){
+       if ($firstGet != NULL) {
+        $amzIDid = $firstGet->data->identityId;
            $amzIDtoken = $firstGet->data->token; 
 
            $postURL = "https://cognito-identity.ap-southeast-1.amazonaws.com/";
@@ -1530,7 +1590,13 @@ function postmoments($userid, $bearer, $posttype, $accounttype) {
            curl_close($postCurl);
            $postjson = json_decode($postResp);
 
-           if($postjson->Credentials){
+           //var_dump($postjson);
+           //exit;
+
+          // if($postjson->Credentials){
+
+            if ($postjson !=NULL)
+            {
                $sessToken = $postjson->Credentials->SessionToken;
                $aws_access_key_id = $postjson->Credentials->AccessKeyId;
                $aws_secret_access_key = $postjson->Credentials->SecretKey;
@@ -1626,7 +1692,7 @@ function postmoments($userid, $bearer, $posttype, $accounttype) {
                curl_exec($ch);
                $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                // print $http_code;
-               if ($http_code != 200) { print "failed\n"; }
+               if ($http_code != 200) { $pmessage ="failed"; }
                
                $delURL = "https://lyka-legacy-images-input.s3.ap-southeast-1.amazonaws.com/".$mediaID;
                $delHeader = array(
@@ -1703,14 +1769,17 @@ function postmoments($userid, $bearer, $posttype, $accounttype) {
                 endif;
                    if ($postresponse != NULL)
                    {
-                      $pmessage=$postresponse->message;
-                   } else {$pmessage="$Yellow\nerror encountered"; }
+                      //$pmessage=$postresponse->message;
+                       $pmessage="added";
+                   } else {$pmessage="error"; }
 
                 return $pmessage;
 
-            } //end post-json
-       }
+            } else { return "error";} //end post-json
+       } else { return "error";}
     }     
+
+} else { return "error";}
 
 }  //end of postmoments
 /////////////////////////////////////////////////////////////////////////////
@@ -1772,6 +1841,9 @@ function postmoments($userid, $bearer, $posttype, $accounttype) {
         curl_close($postCurl);
         $postjson = json_decode($postResp);
  
+       // var_dump($postjson);
+       // exit;
+
         return $postjson;
  }
  
@@ -1811,8 +1883,13 @@ function getgembalance($bearer)
     curl_close($curlbal);
   
     $jsonbal = json_decode($respbal);
-    $gemsavailable = $jsonbal->data->totalGem;
 
+    $gemsavailable = 0;
+    
+    if ($jsonbal != NULL)
+    {
+    $gemsavailable = $jsonbal->data->totalGem;
+    }
     return $gemsavailable; 
 
 } //end of getgembalance
