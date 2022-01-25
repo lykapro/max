@@ -1,6 +1,6 @@
 <?PHP
 $Webs = "https://github.com/lykapro/max\n\n";
-$Script = "MAXmenu build [01.19.22]\n© 2022 Rene Aparri\n";
+$Script = "MAXmenu build [01.25.22]\n© 2022 Rene Aparri\n";
 
 @system("clear");
 
@@ -413,7 +413,7 @@ return;
 
 }
 
-  function harvestmaxgems($accounts, $mainaccounts, $accounttype)
+function harvestmaxgems($accounts, $mainaccounts, $accounttype)
   {
    @system("clear");
    $Cyan     = "\033[0;36m" ;      # Cyan
@@ -613,6 +613,8 @@ return;
 function logintoaccount($acctname, $password) 
 {
     $devID=uniqid('eee');
+    $devmodel=uniqid('REN');
+    $devname=uniqid('SAM');
 
     $urll = "https://identity.mylykaapps.com/useraccounts/login";
     $curll = curl_init($urll);
@@ -627,8 +629,8 @@ function logintoaccount($acctname, $password)
     "device": {
     "deviceId": "$devID",
     "deviceImei": "$devID",
-    "deviceModel": "$devID",
-    "deviceName": "$devID",
+    "deviceModel": "$devmodel",
+    "deviceName": "$devname",
     "deviceOs": "Android",
     "isEmulator": false,
     "notificationToken": "eEBjxYrDSJyFw7N-DpEGNG:APA91bEZnWo-TDdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VODiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-gz",
@@ -1397,7 +1399,7 @@ function loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accoun
     $noofaccounts=$end+1; //count($acct2post);
     $posted=$start;
 
-   do {
+   do {   //loop to each username
       
         $currentuser=$acct2post[$posted];
         $posted++;
@@ -1427,41 +1429,17 @@ function loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accoun
      $postloop=1;
      $postretry=1;
 
-     do {  
+     do {  //loop x times to add post/moment
         
        print "$White";
        printf("adding %-6s #%-2s  > ",$posttype,$postloop);
 
-//       $deviceid = uniqid('daf');
-         
        print "$Green";
        
          $poststatus = postmoments($userid, $bearer, $posttype, $accounttype);
        
-         if ($poststatus != '')
-         {
-
-/*            if (strstr($poststatus,"Too many")) {
-             print "$Yellow";
-		     print "too many, retrying ($postretry)";
-             sleep(5);
-             $postloop--;
-             $postretry++; 
-          } elseif ($poststatus == "Forbidden")
-         {
-             print "$Yellow";
-		     print "forbidden, retrying ($postretry)";
-             sleep(5);
-             $postloop--;
-             $postretry++; 
-          }
-          else {
-           print "$poststatus";
-           $postretry=1;
-         }
-        }  else { print "error"; }
-    */
-        if ($poststatus == "added")
+//        if ($poststatus != '')    {
+        if ($poststatus == "saved")
         {
           print "success";
           $postretry =1;
@@ -1474,10 +1452,9 @@ function loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accoun
             sleep(5);
             $postloop--;
             $postretry++;
-
         }
     
-    } 
+//    } 
 
          print "\n";
         
@@ -1490,20 +1467,20 @@ function loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accoun
     
 else :
     print "$Green\n$jsonn->message\n";
-    break;    
+   // break;    
 endif;
 
 }
-else {
+else {                      //jsonn == NULL
     print "$Green\nError\n";
-    break;
+  //  break;
 }
 
     print "\n$White";
     print "--------------------------------\n";
     usleep(100000);
     
-    } while ($posted != $end+1); 
+} while ($posted != $end+1); 
     //end of loop for x username
     
     if ($jsonn != NULL)
@@ -1519,11 +1496,12 @@ else {
     print "\n$White";
     $x=readline("press enter to continue");
     }
-} else {
+    } else {
 
     print "\n$White";
-    $x=readline("error encounterd.\npress enter to continue");
-}
+    $x=readline("error encountered. press enter to continue");
+    
+    }
 
     mainmenu();
 
@@ -1709,17 +1687,11 @@ function postmoments($userid, $bearer, $posttype, $accounttype) {
                $deleteResp = curl_exec($deleteCurlx);
                curl_close($deleteCurlx);
                 
-                if ($posttype == "post") :
-                  $uploadurl="https://posting.mylykaapps.com/api/v3/posts/AddImagePost";
-                
-                else :
-                     $uploadurl = "https://momenting.mylykaapps.com/api/v3/moments/AddImageMoment";
-                endif;
 
                 usleep(100000);
 
                 if ($posttype == "post") :
-
+                    $uploadurl="https://posting.mylykaapps.com/api/v3/posts/AddImagePost";       
                  if ($accounttype != 'friends')
                  {                
                    $postresponse = postX($uploadurl, 
@@ -1756,6 +1728,7 @@ function postmoments($userid, $bearer, $posttype, $accounttype) {
                     $bearer);
                    } 
                 else : 
+                   $uploadurl = "https://momenting.mylykaapps.com/api/v3/moments/AddImageMoment"; 
                    $postresponse = postX($uploadurl, 
                    payload($deviceid,
                    '"files":[{
@@ -1769,8 +1742,16 @@ function postmoments($userid, $bearer, $posttype, $accounttype) {
                 endif;
                    if ($postresponse != NULL)
                    {
-                      //$pmessage=$postresponse->message;
-                       $pmessage="added";
+                     // print "$postresponse->message";
+                      $pmessage='error';
+                      if ($postresponse->message == '323 - Post saved.')
+                          {
+                            $pmessage="saved";
+                          }
+                      if ($postresponse->message == 'Moment retrieved.')
+                          {
+                            $pmessage="saved";
+                          }
                    } else {$pmessage="error"; }
 
                 return $pmessage;
@@ -1778,7 +1759,6 @@ function postmoments($userid, $bearer, $posttype, $accounttype) {
             } else { return "error";} //end post-json
        } else { return "error";}
     }     
-
 } else { return "error";}
 
 }  //end of postmoments
