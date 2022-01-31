@@ -1,6 +1,6 @@
 <?PHP
 $Webs = "https://github.com/lykapro/max\n\n";
-$Script = "MAXmenu build [01.25.22]\n© 2022 Rene Aparri\n";
+$Script = "MAXmenu build [02.01.22]\n© 2022 Rene Aparri\n";
 
 @system("clear");
 
@@ -91,7 +91,9 @@ array_push($ratersaccount,"xianmig2022");
 array_push($ratersaccount,"zero9691255118");
 array_push($ratersaccount,"ninesixnine1690606");
     
-
+array_push($ratersaccount,"font8652");
+array_push($ratersaccount,"lily4191");
+//array_push($ratersaccount,"7wzzeisr8419");
 
 print "$White";
 //print "$ScriptName\n";
