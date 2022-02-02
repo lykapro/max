@@ -578,9 +578,24 @@ function harvestmaxgems($accounts, $mainaccounts, $accounttype)
      		curl_close($curlGEMS);
 
 			$jsonGEM = json_decode($response_GEMbalance);
+
+//            var_dump($jsonGEM);
+//			break;
+            $msgs = "sent";
+            
+            if ($jsonGEM->message == "Cannot send 0.00 LYKA GEMs.")
+             {  
+               $msgs="no GEMs to send";
+             }
+
+            if ($jsonGEM->message == "Insufficient balance.")
+             {  
+               $msgs="check account";
+             }
+           
                
             print "$White";
-            printf("%2s) %-19s $Green %.2f >$Cyan sent\n",$xcount,$activeaccount,$TotalGEMS);
+            printf("%2s) %-19s $Green %.2f >$Cyan %s\n",$xcount,$activeaccount,$TotalGEMS, $msgs);
             $harvestedgems =$harvestedgems+$TotalGEMS;
 
             } else {
@@ -1771,7 +1786,7 @@ function postmoments($userid, $bearer, $posttype, $accounttype) {
    //
    //////////////////////////////////////////
 
-   function getUserId($rDevID, $mcCookie){
+function getUserId($rDevID, $mcCookie){
     $getUID = getX("https://profiles.mylykaapps.com/api/v3/profiles/GetUserProfileForEditing?os=android", $rDevID, $mcCookie);
  
     return $getUID->data->id;
