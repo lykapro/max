@@ -1,6 +1,6 @@
 <?PHP
 $Webs = "https://github.com/lykapro/max\n\n";
-$Script = "MAXmenu build [02.05.22]\n© 2022 Rene Aparri\n";
+$Script = "MAXmenu build [02.07.22]\n© 2022 Rene Aparri\n";
 
 @system("clear");
 
