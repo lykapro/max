@@ -1703,8 +1703,8 @@ function postmoments($userid, $bearer, $posttype, $accounttype) {
                     "isHighlight":false,
                     "isSharedLink":false,
                     "mediaTags":"[[]]",
-                    title:"'.date("l F").'",
-                    hashtags:"#ActiveLYKA",
+                    title:"'.date("l, d F").'",
+                    hashtags:"#ActiveLYKA'.date("l").'",
                     content: "'.date("mdY").'"'),
                     $bearer);
                   } else
