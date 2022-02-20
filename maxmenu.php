@@ -1,6 +1,6 @@
 <?PHP
 $Webs = "https://github.com/lykapro/max\n\n";
-$Script = "MAXmenu build [02.07.22]\n© 2022 Rene Aparri\n";
+$Script = "MAXmenu build [02.20.2022]\n© 2022 Rene Aparri\n";
 
 @system("clear");
 
@@ -1446,7 +1446,7 @@ function loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accoun
 
         {
             print "$Yellow";
-            print "error, retrying ($postretry)";
+            print "retrying... $postretry";
             sleep(5);
             $postloop--;
             $postretry++;
