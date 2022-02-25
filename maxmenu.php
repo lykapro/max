@@ -1,6 +1,7 @@
 <?PHP
-$Webs = "https://github.com/lykapro/max\n\n";
-$Script = "MAXmenu build [02.20.2022]\n© 2022 Rene Aparri\n";
+$Webs ="LYKAPro Dev Team\n\n";
+$copyright ="© 2022 Rene Aparri\n";
+$Script = "MAXmenu build [02.25.2022]\n\n";
 
 @system("clear");
 
@@ -98,6 +99,7 @@ array_push($ratersaccount,"lily4191");
 print "$White";
 //print "$ScriptName\n";
 print $GLOBALS['Script'];
+print $GLOBALS['copyright'];
 print $GLOBALS['Webs'];
     
 print "$White\nMAIN MENU";
@@ -108,7 +110,7 @@ print "$White\nb )$Green add moments";
 print "$White\nc )$Green posts rating";
 print "$White\nd )$Green check accounts";
 print "$White\ne )$Green harvest gems";
-print "$White\nf )$Green exit menu";
+print "$White\nf )$Green exit script";
 print "$White\n-----------------------------\n$Yellow";
 
    print "Your selection > ";
@@ -145,8 +147,9 @@ print "$White\n-----------------------------\n$Yellow";
         print "\n\n";
         mainmenu();
     case "f" :
-        print "\nthank you";
-        print "\nscript exits\n$White\n";
+        print "$White\nthank you for using script\n\n";
+        print $GLOBALS['Script'];
+        print "\n";
         exit;  
     default :
 
@@ -172,17 +175,18 @@ function checkgemsmenu($ratersaccount, $mainaccounts)
     $Green    = "\033[0;32m" ;      # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
 
-$ScriptName ="CHECK ACCOUNTS\n© 2022 Rene Aparri";
+$ScriptName ="CHECK ACCOUNTS\n";
 
 print "$White";
 print "$ScriptName\n";
+print $GLOBALS['copyright'];
 print $GLOBALS['Webs'];
 print "\nMenu\n";
 print "-----------------------------";
 print "$White\na )$Green main accounts";
 print "$White\nb )$Green raters accounts";
 print "$White\nc )$Green friends account";
-print "$White\nd )$Green back to main";
+print "$White\nd )$Green back to main menu";
 print "$White\n-----------------------------\n$Yellow";
 
    print "Your selection > ";
@@ -231,11 +235,12 @@ return;
    $Green    = "\033[0;32m" ;       # Green
    $Yellow   = "\033[0;33m" ;       # Yellow
    
-   $ScriptName ="CHECK ACCOUNTS\n© 2022 Rene Aparri";
+   $ScriptName ="CHECK ACCOUNTS\n";
   
 
    print "$White";
    print "$ScriptName\n";
+   print $GLOBALS['copyright'];
    print $GLOBALS['Webs'];
    print "How many GEMS do you have?\n";
   
@@ -291,6 +296,7 @@ return;
    @system("clear");
    print "$White\n";
    print "$ScriptName\n";
+   print $GLOBALS['copyright'];
    print $GLOBALS['Webs'];
    print "$Yellow\nlet's check your accounts...\n\n";
    sleep(1);
@@ -376,17 +382,18 @@ function harvestgemsmenu($accounts, $mainaccounts)
     $Green    = "\033[0;32m" ;      # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
 
-$ScriptName ="HARVEST GEMS\n© 2022 Rene Aparri";
+$ScriptName ="HARVEST GEMS\n";
 
 
 print "$White";
 print "$ScriptName\n";
+print $GLOBALS['copyright'];
 print $GLOBALS['Webs'];
 print "\nMenu\n";
 print "-----------------------------";
 print "$White\na )$Green raters accounts";
 print "$White\nb )$Green friends accounts";
-print "$White\nc )$Green back to main";
+print "$White\nc )$Green back to main menu";
 print "$White\n-----------------------------\n";
 
    print "Your selection > ";
@@ -423,11 +430,12 @@ function harvestmaxgems($accounts, $mainaccounts, $accounttype)
    $Green    = "\033[0;32m" ;      # Green
    $Yellow   = "\033[0;33m" ;      # Yellow
 
-       $ScriptName ="HARVEST LYKA GEMs\n© 2022 Rene Aparri";
+       $ScriptName ="HARVEST LYKA GEMs\n";
        
 
        print "$White";
        print "$ScriptName\n";
+       print $GLOBALS['copyright'];
        print $GLOBALS['Webs'];
        print "Let's harvest your GEMS\n";
 
@@ -495,6 +503,7 @@ function harvestmaxgems($accounts, $mainaccounts, $accounttype)
        @system("clear");
        print "$White\n";
        print "$ScriptName\n";
+       print $GLOBALS['copyright'];
        print $GLOBALS['Webs'];
        print "$Yellow\nwe are good to go,\n";
        print "let's harvest your GEMS...\n$White\n";
@@ -521,7 +530,10 @@ function harvestmaxgems($accounts, $mainaccounts, $accounttype)
 
        $jsonn =logintoaccount($activeaccount, $mainpassword);
        
-       
+       if ($jsonn->message != NULL)
+       { 
+     
+
        if ($jsonn->message != "Invalid username/password")
        	{ 
 				
@@ -585,7 +597,7 @@ function harvestmaxgems($accounts, $mainaccounts, $accounttype)
             
             if ($jsonGEM->message == "Cannot send 0.00 LYKA GEMs.")
              {  
-               $msgs="no GEMs to send";
+               $msgs="no GEMs";
              }
 
             if ($jsonGEM->message == "Insufficient balance.")
@@ -610,6 +622,10 @@ function harvestmaxgems($accounts, $mainaccounts, $accounttype)
        	    
        	    } //!="Invalid username
 
+        } else 
+           {
+               print "LYKA error";
+           }   
        		usleep(100000);
        			
        		} while ($xcount != $end +1); //end of loop for each acct
@@ -668,7 +684,9 @@ function logintoaccount($acctname, $password)
     return $loginstatus; 
 } //end login to account
 
+////////////////////////////////////////////////
 # 
+////////////////////////////////////////////////
 
 // THIS IS THE MENU FOR RATEPOST  
 function ratepostmenu($ratersaccount, $mainaccounts)
@@ -680,10 +698,11 @@ function ratepostmenu($ratersaccount, $mainaccounts)
     $Green    = "\033[0;32m" ;      # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
 
-$ScriptName ="POSTS RATING\n© 2022 Rene Aparri";
+$ScriptName ="POSTS RATING\n";
 
 print "$White";
 print "$ScriptName\n";
+print $GLOBALS['copyright'];
 print $GLOBALS['Webs'];
 print "\nMenu\n";
 print "-----------------------------";
@@ -693,7 +712,7 @@ print "$White\nb )$Cyan raters > friends account";
 print "$White\nc )$Cyan main > raters accounts";
 print "$White\nd )$Cyan main > friends account";
 print "$White\ne )$Cyan friends > friends account";
-print "$White\nf )$Cyan back to main";
+print "$White\nf )$Cyan back to main menu";
 print "$White\n-----------------------------\n";
 
    print "Your selection > ";
@@ -760,6 +779,7 @@ function max2max($raters,$acct2rate)
 
     print "$White";
     print "$ScriptName\n";
+    print $GLOBALS['copyright'];
     print $GLOBALS['Webs'];
     print "max-rate posts\n";
     
@@ -806,6 +826,7 @@ function main2raters($raters, $acct2rate)
 
     print "$White";
     print "$ScriptName\n";
+    print $GLOBALS['copyright'];
     print $GLOBALS['Webs'];
     print "you are about to rate posts using your main accounts\n";
     
@@ -857,11 +878,12 @@ function max2u($raters,$raterstype)
     $Green    = "\033[0;32m" ;       # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
 
-    $ScriptName ="$raterstype account to max-rate friends account\n© 2022 Rene Aparri";
+    $ScriptName ="$raterstype account to max-rate friends account\n";
   
 
     print "$White";
     print "$ScriptName\n";
+    print $GLOBALS['copyright'];
     print $GLOBALS['Webs'];
     print "Needed: usernames to RATE\n";
     
@@ -919,11 +941,12 @@ function friendsaccount()
     $Green    = "\033[0;32m" ;        # Green
     $Yellow   = "\033[0;33m" ;        # Yellow
     
-    $ScriptName ="Rate Friends Account \n© 2022 Rene Aparri";
+    $ScriptName ="Rate Friends Account \n";
   
 
 print "$White";
 print "$ScriptName\n";
+print $GLOBALS['copyright'];
 print $GLOBALS['Webs'];
 print "this routine will help you rate the post of your friend\n";
 
@@ -1005,9 +1028,10 @@ return;
    @system("clear");
    print "$White\n";
    print "$ScriptName\n";
+   print $GLOBALS['copyright'];
    print $GLOBALS['Webs'];
-   print "$Yellow\nwe have enough data needed to proceed\n";
-   print "posts rating is starting ...\n\n";
+   print "$Cyan\n";
+   print "posts rating in progress ...\n\n";
    usleep(100000);
    
    #/////////////////// start rating ////////////////////
@@ -1177,11 +1201,11 @@ return;
                        print "-------------\n";   
       #                 //// end of do...while /////////
                    else :
-                       print "\n$Yellow >> error connecting to [$beingrated]\n"  ; 
+                       print "\n$Yellow>> error connecting to [$beingrated]\n"  ; 
                    endif;
                      
                    else:
-                       print "\n$Yellow >> skip rating [$beingrated]\n";
+                       print "\n$Yellow>> skip rating [$beingrated]\n";
        
                endif; //raters!=rated
                    usleep(100000);
@@ -1193,7 +1217,7 @@ return;
        
        else : //jsonn !=null
            print "$Yellow\n";
-           print "failed to login to RATERS account";
+           print "login failed";
            print "\n$White";
    
        endif;    
@@ -1225,18 +1249,19 @@ function addpostmomentMenu($posttype, $ratersaccount, $mainaccounts)
     $Green    = "\033[0;32m" ;       # Green
     $Yellow   = "\033[0;33m" ;       # Yellow
 
-$ScriptName ="ADD POSTS/MOMENTS ROUTINE\n© 2022 Rene Aparri";
+$ScriptName ="ADD POSTS/MOMENTS ROUTINE\n";
 
 
 print "$White";
 print "$ScriptName\n";
+print $GLOBALS['copyright'];
 print $GLOBALS['Webs'];
 print "\nadd $posttype menu\n";
 print "-----------------------------";
 print "$White\na )$Green add to main accounts";
 print "$White\nb )$Green add to raters accounts";
 print "$White\nc )$Green add to friends account";
-print "$White\nd )$Green back to main";
+print "$White\nd )$Green back to main menu";
 print "$White\n-----------------------------\n";
 
    print "Your selection > ";
@@ -1287,13 +1312,14 @@ function addpost2account($newaccounts, $posttype, $accounttype)
    $Cyan     = "\033[0;36m" ;     //Cyan
    $White    = "\033[0;37m" ;     //White
    
-   $ScriptName ="ADD POSTS/MOMENT ROUTINE\n© 2022 Rene Aparri";
+   $ScriptName ="ADD POSTS/MOMENT ROUTINE\n";
    
    
    $acct=0;
    
    print "$White";
    print "$ScriptName\n";
+   print $GLOBALS['copyright'];
    print $GLOBALS['Webs'];
    print "add $posttype(s) to $accounttype account\n";
    
@@ -1371,6 +1397,7 @@ function addpost2account($newaccounts, $posttype, $accounttype)
    @system("clear");
    print "$White\n";
    print "$ScriptName\n";
+   print $GLOBALS['copyright'];
    print $GLOBALS['Webs'];
    print "$Yellow\nlet's now add $posttype to $accounttype account\n";
    print "pls. wait ...\n";
