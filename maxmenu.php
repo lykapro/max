@@ -1,7 +1,7 @@
 <?PHP
 $Webs ="LYKAPro Dev Team\n\n";
 $copyright ="© 2022 Rene Aparri\n";
-$Script = "MAXmenu build [02.25.2022]\n\n";
+$Script = "MAXmenu build [02.28.2022]\n\n";
 
 @system("clear");
 
@@ -1855,7 +1855,7 @@ function getUserId($rDevID, $mcCookie){
  function payload($deviceidx, $xtraPay, $rTokenx = ""){
 
     $devicenamemodel=uniqid('ddd');
-    $devicenamemodel=uniqid('SAM');
+    $devicename=uniqid('SAM');
 	 
      $valdata = <<<DATA
              {"device": {
