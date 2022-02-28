@@ -105,12 +105,12 @@ print $GLOBALS['Webs'];
 print "$White\nMAIN MENU";
 print "$White\n-----------------------------";
 
-print "$White\na )$Green add posts";
-print "$White\nb )$Green add moments";
-print "$White\nc )$Green posts rating";
-print "$White\nd )$Green check accounts";
-print "$White\ne )$Green harvest gems";
-print "$White\nf )$Green exit script";
+print "$White\n a )$Green add posts";
+print "$White\n b )$Green add moments";
+print "$White\n c )$Green posts rating";
+print "$White\n d )$Green check accounts";
+print "$White\n e )$Green harvest gems";
+print "$White\n f )$Green exit script";
 print "$White\n-----------------------------\n$Yellow";
 
    print "Your selection > ";
@@ -183,10 +183,10 @@ print $GLOBALS['copyright'];
 print $GLOBALS['Webs'];
 print "\nMenu\n";
 print "-----------------------------";
-print "$White\na )$Green main accounts";
-print "$White\nb )$Green raters accounts";
-print "$White\nc )$Green friends account";
-print "$White\nd )$Green back to main menu";
+print "$White\n a )$Green main accounts";
+print "$White\n b )$Green raters accounts";
+print "$White\n c )$Green friends account";
+print "$White\n d )$Green back to main menu";
 print "$White\n-----------------------------\n$Yellow";
 
    print "Your selection > ";
@@ -242,7 +242,7 @@ return;
    print "$ScriptName\n";
    print $GLOBALS['copyright'];
    print $GLOBALS['Webs'];
-   print "How many GEMS do you have?\n";
+   print "Checking accumulated GEMs..\n";
   
       $maxaccounts=[];
          
@@ -298,7 +298,7 @@ return;
    print "$ScriptName\n";
    print $GLOBALS['copyright'];
    print $GLOBALS['Webs'];
-   print "$Yellow\nlet's check your accounts...\n\n";
+   print "$Yellow\nchecking GEMs in progress...\n\n";
    sleep(1);
 
    checkgems($maxaccounts, $start, $end, $mainpassword);
@@ -391,9 +391,9 @@ print $GLOBALS['copyright'];
 print $GLOBALS['Webs'];
 print "\nMenu\n";
 print "-----------------------------";
-print "$White\na )$Green raters accounts";
-print "$White\nb )$Green friends accounts";
-print "$White\nc )$Green back to main menu";
+print "$White\n a )$Green raters accounts";
+print "$White\n b )$Green friends accounts";
+print "$White\n c )$Green back to main menu";
 print "$White\n-----------------------------\n";
 
    print "Your selection > ";
@@ -506,7 +506,7 @@ function harvestmaxgems($accounts, $mainaccounts, $accounttype)
        print $GLOBALS['copyright'];
        print $GLOBALS['Webs'];
        print "$Yellow\nwe are good to go,\n";
-       print "let's harvest your GEMS...\n$White\n";
+       print "GEMs harvest in progress...\n$White\n";
        usleep(200000);
        
        $harvestedgems=0;
@@ -707,12 +707,12 @@ print $GLOBALS['Webs'];
 print "\nMenu\n";
 print "-----------------------------";
 
-print "$White\na )$Cyan raters > main accounts";
-print "$White\nb )$Cyan raters > friends account";
-print "$White\nc )$Cyan main > raters accounts";
-print "$White\nd )$Cyan main > friends account";
-print "$White\ne )$Cyan friends > friends account";
-print "$White\nf )$Cyan back to main menu";
+print "$White\n a )$Cyan raters > main accounts";
+print "$White\n b )$Cyan raters > friends account";
+print "$White\n c )$Cyan main > raters accounts";
+print "$White\n d )$Cyan main > friends account";
+print "$White\n e )$Cyan friends > friends account";
+print "$White\n f )$Cyan back to main menu";
 print "$White\n-----------------------------\n";
 
    print "Your selection > ";
@@ -821,22 +821,22 @@ function main2raters($raters, $acct2rate)
     $Green    = "\033[0;32m" ;       # Green
     $Yellow   = "\033[0;33m" ;       # Yellow
     
-    $ScriptName ="main > raters";
+    $ScriptName ="POSTS RATING (main > raters)";
     
 
     print "$White";
     print "$ScriptName\n";
     print $GLOBALS['copyright'];
     print $GLOBALS['Webs'];
-    print "you are about to rate posts using your main accounts\n";
+    print "posts rating using MAIN accounts\n";
     
     print "\nMAIN accounts\n";
     $start=0;
     $end=3;
-    print "$Green\n1) [$raters[0]]";
-    print "$Green\n2) [$raters[1]]";
-    print "$Green\n3) [$raters[2]]";
-    print "$Green\n3) [$raters[3]]\n";
+    print "$Green\n 1) [$raters[0]]";
+    print "$Green\n 2) [$raters[1]]";
+    print "$Green\n 3) [$raters[2]]";
+    print "$Green\n 4) [$raters[3]]\n";
 
     $acct2rate2=[];
     array_push($acct2rate2,"$acct2rate[0]"); 
@@ -846,14 +846,14 @@ function main2raters($raters, $acct2rate)
 
     print "$White\nAccounts to RATE\n";
   
-    print "$Green\n1) [$acct2rate2[0]]";
-    print "$Green\n2) [$acct2rate2[1]]";
-    print "$Green\n3) [$acct2rate2[2]]";
-    print "$Green\n4) [$acct2rate2[3]]\n";
+    print "$Green\n 1) [$acct2rate2[0]]";
+    print "$Green\n 2) [$acct2rate2[1]]";
+    print "$Green\n 3) [$acct2rate2[2]]";
+    print "$Green\n 4) [$acct2rate2[3]]\n";
 
 
     print "$Yellow\n";
-    print "Input MAIN account password\n$Green\n";
+    print "MAIN account password\n$Green\n";
   
     $mainpassword=readline('Password : ');
     if ($mainpassword == '')
@@ -878,7 +878,7 @@ function max2u($raters,$raterstype)
     $Green    = "\033[0;32m" ;       # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
 
-    $ScriptName ="$raterstype account to max-rate friends account\n";
+    $ScriptName ="POSTS RATING ($raters -> $raterstype)\n";
   
 
     print "$White";
@@ -941,7 +941,7 @@ function friendsaccount()
     $Green    = "\033[0;32m" ;        # Green
     $Yellow   = "\033[0;33m" ;        # Yellow
     
-    $ScriptName ="Rate Friends Account \n";
+    $ScriptName ="POSTS RATING (Friends Account)\n";
   
 
 print "$White";
@@ -1116,8 +1116,8 @@ return;
    
                        $devID=uniqid('eab');
                        $devIMEI=uniqid('zac');
-                       $devicenamemodelmodel=uniqid('eea');
-   
+                       $devicenamemodel=uniqid('eea');
+   		       $devicename=uniqid('NOK');
                        do {
    
                        
@@ -1137,8 +1137,8 @@ return;
                            "device": {
                            "deviceId"         : "$devID",
                            "deviceImei"       : "$devIMEI",
-                           "deviceModel"      : "$devicenamemodelmodel",
-                           "deviceName"       : "$devicenamemodelmodel",
+                           "deviceModel"      : "$devicenamemodel",
+                           "deviceName"       : "$devicename",
                            "deviceOs"         : "Android",
                            "isEmulator"       : false,
                            "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
@@ -1249,7 +1249,7 @@ function addpostmomentMenu($posttype, $ratersaccount, $mainaccounts)
     $Green    = "\033[0;32m" ;       # Green
     $Yellow   = "\033[0;33m" ;       # Yellow
 
-$ScriptName ="ADD POSTS/MOMENTS ROUTINE\n";
+$ScriptName ="ADD POSTS/MOMENTS\n";
 
 
 print "$White";
@@ -1258,10 +1258,10 @@ print $GLOBALS['copyright'];
 print $GLOBALS['Webs'];
 print "\nadd $posttype menu\n";
 print "-----------------------------";
-print "$White\na )$Green add to main accounts";
-print "$White\nb )$Green add to raters accounts";
-print "$White\nc )$Green add to friends account";
-print "$White\nd )$Green back to main menu";
+print "$White\n a )$Green add to main accounts";
+print "$White\n b )$Green add to raters accounts";
+print "$White\n c )$Green add to friends account";
+print "$White\n d )$Green back to main menu";
 print "$White\n-----------------------------\n";
 
    print "Your selection > ";
@@ -1855,13 +1855,14 @@ function getUserId($rDevID, $mcCookie){
  function payload($deviceidx, $xtraPay, $rTokenx = ""){
 
     $devicenamemodel=uniqid('ddd');
-
+    $devicenamemodel=uniqid('SAM');
+	 
      $valdata = <<<DATA
              {"device": {
                  "deviceId": "$deviceidx",
                  "deviceImei": "$deviceidx",
                  "deviceModel": "$devicenamemodel",
-                 "deviceName": "$devicenamemodel",
+                 "deviceName": "$devicename",
                  "deviceOs": "Android",
                  "isEmulator": false,
                  "osVersion": "11",
@@ -1903,7 +1904,9 @@ function getgembalance($bearer)
 function getID($acctname, $password) 
 {
     $devID=uniqid('eee');
-
+    $devModel=uniqid('SAM');
+    $devName=uniqid('NOK');	
+	
     $urll = "https://identity.mylykaapps.com/useraccounts/login";
     $curll = curl_init($urll);
     curl_setopt($curll, CURLOPT_URL, $urll);
@@ -1917,8 +1920,8 @@ function getID($acctname, $password)
     "device": {
     "deviceId": "$devID",
     "deviceImei": "$devID",
-    "deviceModel": "$devID",
-    "deviceName": "$devID",
+    "deviceModel": "$devModel",
+    "deviceName": "$devName",
     "deviceOs": "Android",
     "isEmulator": false,
     "notificationToken": "eEBjxYrDSJyFw7N-DpEGNG:APA91bEZnWo-TDdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VODiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-gz",
