@@ -1,7 +1,7 @@
 <?PHP
-$Webs ="LYKAPro Dev Team\n\n";
+$Webs ="lykapro dev team\n\n";
 $copyright ="© 2022 Rene Aparri\n";
-$Script = "MAXmenu build [03.17.2022]\n\n";
+$Script = "MAX Menu build [04.14.2022]\n\n";
 
 @system("clear");
 
